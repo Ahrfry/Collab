@@ -3,11 +3,33 @@ const router = express.Router()
 const conn = require('../db')
 
 
+
 router.get('/', (req, res) => {
     conn.query('SELECT * FROM User as User', (err, rows, fields) => {
         if (err) throw err
       
         console.log('The solution is: ', rows)
+        res.json(rows)
+    })
+    
+    
+})
+
+function get_user_areas(id){
+    conn.query('SELECT * FROM User as User where id=1', (err, rows, fields) => {
+        if (err) throw err
+      
+        console.log('The solution from logged is: ', rows)
+        return rows
+    })
+}
+
+router.get('/logged', (req, res) => {
+    console.log("GETTTINNGGG " , get_user_areas(1));
+    conn.query('SELECT * FROM User as User where id=1', (err, rows, fields) => {
+        if (err) throw err
+      
+        console.log('The solution from logged is: ', rows)
         res.json(rows)
     })
     
