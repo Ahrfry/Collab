@@ -15,17 +15,9 @@ router.get('/', (req, res) => {
     
 })
 
-function get_user_areas(id){
-    conn.query('SELECT * FROM User as User where id=1', (err, rows, fields) => {
-        if (err) throw err
-      
-        console.log('The solution from logged is: ', rows)
-        return rows
-    })
-}
 
 router.get('/logged', (req, res) => {
-    console.log("GETTTINNGGG " , get_user_areas(1));
+    
     conn.query('SELECT * FROM User as User where id=1', (err, rows, fields) => {
         if (err) throw err
       
