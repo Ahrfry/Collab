@@ -2,7 +2,13 @@ const express = require('express')
 const router = express.Router()
 const conn = require('../db')
 
+var bodyParser = require('body-parser')
 
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+ 
 
 router.get('/', (req, res) => {
     conn.query('SELECT * FROM User as User', (err, rows, fields) => {
@@ -20,6 +26,18 @@ router.get('/', (req, res) => {
 router.get('/logged/:id', (req, res) => {
     id = req.params.id.substring(req.params.id.indexOf(':')+1);
     conn.query(`SELECT * FROM User as User where id=${id}`, (err, rows, fields) => {
+        if (err) throw err
+      
+        //console.log('The solution from logged is: ', rows)
+        res.json(rows)
+    })
+    
+    
+})
+
+router.post('/login', jsonParser , (req, res) => {
+    console.log(req.body)
+    conn.query(`SELECT * FROM User as User where username='${String(req.body.username)}' and password='${String(req.body.password)}'`, (err, rows, fields) => {
         if (err) throw err
       
         //console.log('The solution from logged is: ', rows)

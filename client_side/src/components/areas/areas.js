@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {Button , Card , Container, Row, Col} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import styles from './users.css';
+import styles from './areas.css';
 
 
-class Users extends Component {  
+class Areas extends Component {  
     constructor(){
         super();
         this.state = {
@@ -92,4 +92,4 @@ class Users extends Component {
     }  
 }
 
-export default Users;
+export default Areas;
