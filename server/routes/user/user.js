@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/logged/:id', (req, res) => {
+    console.log(req.params);
     id = req.params.id.substring(req.params.id.indexOf(':')+1);
     conn.query(`SELECT * FROM User as User where id=${id}`, (err, rows, fields) => {
         if (err) throw err

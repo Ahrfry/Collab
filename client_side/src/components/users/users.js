@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {Button , Card , Container, Row, Col, Table} from 'react-bootstrap'
-import { BrowserRouter as Router, Route, Routes, useParams} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, useParams, useNavigate} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import styles from './users.css';
 
 function withParams(Component) {
-    return props => <Component {...props} params={useParams()} />;
-  }
+    return props => <Component {...props} params={useParams()} navigate={useNavigate()} />;
+}
   
 
 class Users extends Component {  
@@ -19,7 +19,7 @@ class Users extends Component {
             projects: [],
             areas: [],
             affinities: [],
-            
+            user_id : localStorage.getItem("user")
         }
         
         
@@ -27,17 +27,22 @@ class Users extends Component {
 
     componentDidMount(){
         
-        let { id } = this.props.params;
+        //let { id } = this.props.params;
+        let aut = localStorage.getItem('user');
         
+        
+        console.log('http://localhost:3000/users/logged/'+this.state.user_id)
         const urls = [
-            'http://localhost:3000/users/logged/'+id,
+            'http://localhost:3000/users/logged/'+this.state.user_id,
             'http://localhost:3000/users',
             'http://localhost:3000/users/projects',
             'http://localhost:3000/areas/logged',
-            'http://localhost:3000/users/affinity/'+id
+            'http://localhost:3000/users/affinity/'+this.state.user_id
             
 
         ]
+        
+        
 
         let requests = urls.map((url) => fetch(url));
         Promise.all(requests)
@@ -53,7 +58,12 @@ class Users extends Component {
                     affinities: responses[4]
                 });
             });
-    
+        /*
+        if(localStorage.getItem('user') < 0){
+            console.log(localStorage.getItem('user'));
+            this.props.navigate("/login/");
+            
+        }*/
     }
 
     

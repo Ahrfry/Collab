@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Button , Card , Container, Row, Col, Table} from 'react-bootstrap'
-import { BrowserRouter as Router, Route, Routes, useParams} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, useParams, useNavigate} from 'react-router-dom'
 import Users from './../users/users'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -18,6 +18,9 @@ return fetch('http://localhost:3000/users/login/', {
     .then(data => data.json())
 }
 
+function withParams(Component) {
+    return props => <Component {...props} params={useParams()} navigate={useNavigate()} />;
+  }
 
 class Login extends Component {  
     constructor(){
@@ -30,22 +33,25 @@ class Login extends Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     async handleSubmit(e){
         e.preventDefault()
-        localStorage.setItem("authenticated", true);
         
-        const token = await loginUser({
+        const user = await loginUser({
             username: this.state.username, password: this.state.password
-          });
-          //setToken(token);
+        });
         
+        localStorage.setItem("authenticated", true);
+        localStorage.setItem("user", user[0].id);
+        this.props.navigate("/users");
                 
     }
 
     componentDidMount(){
-         console.log(localStorage.getItem("authenticated"));
+        
+        
     }
 
     
@@ -78,4 +84,4 @@ class Login extends Component {
     }  
 }
 
-export default Login;
+export default withParams(Login);

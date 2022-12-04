@@ -21,7 +21,7 @@ class Areas extends Component {
 
     componentDidMount(){
         const urls = [
-            'http://localhost:3000/users/logged',
+            
             'http://localhost:3000/users',
             'http://localhost:3000/users/projects',
             'http://localhost:3000/areas/logged'

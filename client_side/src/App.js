@@ -1,19 +1,25 @@
 
 import {Container, Row, Col, Navbar, Nav} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate, Route, Routes, useNavigate} from 'react-router-dom'
 import './App.css';
 import Users from './components/users/users'
 import Areas from './components/areas/areas'
 import Login from './components/login/login'
+import PrivateRoute from './components/private_route/private_route'
+
 
 
 function App() {
-
-  if(1==1){
-    console.log("Yeah this is possible");
-
-  }
+  //const navigate = useNavigate();
+  let navigate = useNavigate(); 
+  const handleClick = () => {
+    localStorage.removeItem("user");
+    console.log("HELLOOOOOOO");
+    
+    navigate("/login");
+    
+  };
 
   return (
     
@@ -34,22 +40,31 @@ function App() {
                 <Nav.Link href="#">
                   Areas
                 </Nav.Link>
+                <Nav.Link  onClick={() => handleClick()}>
+                  logout
+                </Nav.Link>
+                
               </Nav>
                 
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <Router>
+     
           <Routes>
-            <Route path="/users/:id" element={<Users/>}/>
+            <Route path="/users/" element={
+              <PrivateRoute>
+                <Users/>
+              </PrivateRoute>
+            
+            }/>
           </Routes>
           <Routes>
-            <Route path="/areas" element={<Areas/>}/>
+            <Route path="/areas/" element={<Areas/>}/>
           </Routes>
           <Routes>
-            <Route path="/login" element={<Login/>}/>
+            <Route path="/login/" element={<Login/>}/>
           </Routes>    
-        </Router>
+       
         
       </Container>
   
