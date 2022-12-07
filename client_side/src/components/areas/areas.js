@@ -53,7 +53,7 @@ class Areas extends Component {
                     <Row >
                         <Col className="mh-100" md lg="2">
                             <Card >
-                                <Card.Img variant="top" src={require('./../images/user/rafael_oliveira.jpg')} />
+                                <Card.Img variant="top" src={require('./../images/user/rafael.jpg')} />
                                 <Card.Body className="mh-100">
                                     
                                     <Card.Title>

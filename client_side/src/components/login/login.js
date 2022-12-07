@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button , Card , Container, Row, Col, Table} from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Routes, useParams, useNavigate} from 'react-router-dom'
-import Users from './../users/users'
+import Users from '../users/user'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import styles from './login.css';
@@ -45,7 +45,7 @@ class Login extends Component {
         
         localStorage.setItem("authenticated", true);
         localStorage.setItem("user", user[0].id);
-        this.props.navigate("/users");
+        this.props.navigate("/users/user");
                 
     }
 

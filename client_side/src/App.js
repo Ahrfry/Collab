@@ -3,9 +3,11 @@ import {Container, Row, Col, Navbar, Nav} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Navigate, Route, Routes, useNavigate} from 'react-router-dom'
 import './App.css';
-import Users from './components/users/users'
-import Areas from './components/areas/areas'
+import Users from './components/users/user'
+import Area from './components/areas/area'
+import Profile from './components/users/profile'
 import Login from './components/login/login'
+import Project from './components/projects/project'
 import PrivateRoute from './components/private_route/private_route'
 
 
@@ -34,12 +36,8 @@ function App() {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Projects</Nav.Link>
+                <Nav.Link href="/users/user">Home</Nav.Link>
                 
-                <Nav.Link href="#">
-                  Areas
-                </Nav.Link>
                 <Nav.Link  onClick={() => handleClick()}>
                   logout
                 </Nav.Link>
@@ -51,18 +49,32 @@ function App() {
         </Navbar>
      
           <Routes>
-            <Route path="/users/" element={
+            <Route path="/users/user/*" element={
               <PrivateRoute>
                 <Users/>
               </PrivateRoute>
             
             }/>
           </Routes>
+          
           <Routes>
-            <Route path="/areas/" element={<Areas/>}/>
+            <Route path="/project/:id" element={
+              <PrivateRoute>
+                <Project/>
+              </PrivateRoute>
+            
+            }/>
           </Routes>
+          
           <Routes>
-            <Route path="/login/" element={<Login/>}/>
+            <Route path="/login/*" element={<Login/>}/>
+          </Routes>  
+
+          <Routes>
+            <Route path="/users/profile/:id" element={<Profile/>}/>
+          </Routes> 
+          <Routes>
+            <Route path="/areas/area/:id" element={<Area/>}/>
           </Routes>    
        
         
