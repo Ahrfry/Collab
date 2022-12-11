@@ -54,9 +54,10 @@ Once db.js is configured, run:
     npm run server
 
 ###List of files implemented in Server Side:
-*One
-*Two
-*Three
+Markup : * Bullet list
+              * Nested bullet
+                  * Sub-nested bullet etc
+          * Bullet list item 2
 
 ## Install Client Side
 
