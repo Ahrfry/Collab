@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button , Card , Container, Row, Col, Table} from 'react-bootstrap'
+import {Button , Card , Container, Row, Col, Table, Form} from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Routes, useParams, useNavigate} from 'react-router-dom'
 import Users from '../users/user'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -59,26 +59,28 @@ class Login extends Component {
     render (){
         return (
            
+           
             <div>
-            <p>Welcome Back</p>
-            <form onSubmit={this.handleSubmit}>
-            <input
-            type="text"
-            name="Username"
-            value={this.username}
-            onChange={(e) => this.setState({username: e.target.value})}
-            />
-            <input
-            type="password"
-            name="Password"
-            onChange={(e) => this.setState({password: e.target.value})}
-            />
-            <input type="submit" value="Submit" />
-            </form>
+                <Form onSubmit={this.handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="text" placeholder="Username" value={this.username}
+            onChange={(e) => this.setState({username: e.target.value})}/>
+                  <Form.Text className="text-muted">
+                    Your information is secure with us!.
+                  </Form.Text>
+                </Form.Group>
+          
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password"  onChange={(e) => this.setState({password: e.target.value})}/>
+                </Form.Group>
+                
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
             </div>
-                
-                 
-                
            
         );
     }  
