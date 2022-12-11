@@ -46,6 +46,9 @@ CD into server and run:
 
     npm install --force
 
+### +Implemented files+
+* /server/app.js
+* All files in /server/routes
 
 After project is installed, modify the file /server/db.js to match your database configuration (username and password)
 
@@ -66,6 +69,11 @@ After project is installed the front end should be ready to connect to the backe
     npm start
 
 A current valid user in the database is username: brazil, passwrd: 12345. Any user loaded in the database should work properly in the system.
+
+### +Implemented files+
+* /client_side/App.js
+* /client_side/index.js
+* All files in /client_side/components
 
 
 # Dynamic Setup (work in progress):
