@@ -53,6 +53,10 @@ Once db.js is configured, run:
 
     npm run server
 
+###List of files implemented in Server Side:
+*One
+*Two
+*Three
 
 ## Install Client Side
 
