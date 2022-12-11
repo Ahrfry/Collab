@@ -72,7 +72,7 @@ function get_area(id){
     
 
     var promise = new Promise( function(resolve, reject) {
-        var query = `SELECT Area.name, Area.description FROM Collab.Area as Area where Area.area_id= ${id};`
+        var query = `SELECT Area.name, Area.description FROM Collab.Area as Area where Area.area_id= ${id} group by Area.name;`
         conn.query(query, function (err, results) {
           if (err || results.length === 0) {
             reject();

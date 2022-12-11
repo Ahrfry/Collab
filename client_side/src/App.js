@@ -37,7 +37,7 @@ function App() {
                 navbarScroll
               >
                 <Nav.Link href="/users/user">Home</Nav.Link>
-                
+                  
                 <Nav.Link  onClick={() => handleClick()}>
                   logout
                 </Nav.Link>
